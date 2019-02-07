@@ -17,7 +17,7 @@ public class MailUtils {
 		Properties props = new Properties();
 
 		try {
-			//props.load(new FileInputStream(new File("C:\\smtp.properties")));
+			// props.load(new FileInputStream(new File("C:\\smtp.properties")));
 			props.setProperty("mail.smtp.host", "smtp.gmail.com");
 			props.setProperty("mail.smtp.socketFactory.port", "465");
 			props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
@@ -26,9 +26,9 @@ public class MailUtils {
 			Session session = Session.getDefaultInstance(props, null);
 
 			Properties gmailAccount = new Properties();
-			gmailAccount.load(new FileInputStream(new File("/Users/virag/eclipse-workspace/LearnJava/src/GmailAccount.properties")));
+			gmailAccount.load(new FileInputStream(new File("src/resources/GmailAccount.properties")));
 			System.out.println("gmail:- " + gmailAccount.getProperty("user"));
-			
+
 			Store store = session.getStore("imaps");
 			store.connect("smtp.gmail.com", gmailAccount.getProperty("user"), gmailAccount.getProperty("password"));
 
@@ -36,15 +36,14 @@ public class MailUtils {
 			inbox.open(Folder.READ_ONLY);
 			int messageCount = inbox.getMessageCount();
 			int newmsg = inbox.getUnreadMessageCount();
-			
+
 			System.out.println("Total Messages:- " + messageCount);
 			System.out.println("New Messages:- " + newmsg);
 
-			
 			Message[] messages = inbox.getMessages();
 			System.out.println("------------------------------");
 
-			for (int i = messageCount - 1; i >= 0 ; i--) {
+			for (int i = messageCount - 1; i >= 0; i--) {
 				System.out.println("Mail Subject:- " + messages[i].getSubject());
 			}
 			inbox.close(true);
@@ -109,7 +108,7 @@ public class MailUtils {
 		String username = "meetkv8@gmail.com";// change accordingly
 		String password = "East!234";// change accordingly
 
-		 check(host, mailStoreType, username, password);
+		check(host, mailStoreType, username, password);
 //		read();
 
 	}
